@@ -8,7 +8,7 @@ import { AuthService } from 'src/app/core/services/auth.service'
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit, OnDestroy {
-  
+
   user$
   loginForm = new FormGroup({
     username: new FormControl(''),
@@ -20,8 +20,10 @@ export class LoginComponent implements OnInit, OnDestroy {
   ngOnInit() {
   }
 
-  ngOnDestroy(): void {
-    this.user$.unsubscribe()
+  ngOnDestroy (): void {
+    if (this.user$) {
+      this.user$.unsubscribe()
+    }
   }
 
   onSubmit () {

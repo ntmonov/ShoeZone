@@ -31,6 +31,11 @@ export class AuthService {
     return this.http.post(url, JSON.stringify(user), this.httpOptions)
   }
 
+  register (user) {
+    const url: string = `${this.URL}user/${this.APP_KEY}`
+    return this.http.post(url, JSON.stringify(user), this.httpOptions)
+  }
+
   logout () {
     const httpHeaders = {
       headers: new HttpHeaders({
