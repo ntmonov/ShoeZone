@@ -12,5 +12,9 @@
         <a class="nav-link" routerLink="/login">Влез</a>
       </li>
     </ul>
+    <div *ngIf="authService.isLoggedIn()">
+      <span class="mr-3">Добре дошли {{username}}</span>
+      <button (click)="logout()">Logout</button>
+    </div>
   </div>
 </nav>
