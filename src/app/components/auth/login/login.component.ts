@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core'
 import { FormGroup, FormControl } from '@angular/forms'
+import toastr from  'toastr'
 import { AuthService } from 'src/app/core/services/auth.service'
 
 @Component({
@@ -28,7 +29,10 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   onSubmit () {
     const user = this.loginForm.value
-    this.user$ = this.authService.login(user).subscribe(user => this.authService.saveSession(user), err => console.log(err))
+    this.user$ = this.authService.login(user).subscribe(user => { 
+      this.authService.saveSession(user)
+      toastr.success('Успешно влизане', '', { timeOut: 1000 })
+    }, err => console.log(err))
   }
 
 }

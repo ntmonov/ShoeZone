@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core'
-import { AuthService } from 'src/app/core/services/auth.service';
+import toastr from 'toastr'
+import { AuthService } from 'src/app/core/services/auth.service'
 
 @Component({
   selector: 'app-header',
@@ -23,7 +24,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   logout () {
-    this.user$ = this.authService.logout().subscribe(data => window.sessionStorage.clear(), err => console.log(err))
+    this.user$ = this.authService.logout().subscribe(data => {
+      window.sessionStorage.clear()
+      toastr.success('Успешно излизане', '', { timeOut: 1000 })
+    }, err => console.log(err))
   }
 
 }
