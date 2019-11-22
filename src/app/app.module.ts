@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core'
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
 import { LandingModule } from './components/landing/landing.module'
+import { SharedModule } from './components/shared/shared.module'
 
 @NgModule({
   declarations: [
@@ -12,7 +13,8 @@ import { LandingModule } from './components/landing/landing.module'
   imports: [
     BrowserModule,
     AppRoutingModule,
-    LandingModule
+    LandingModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
