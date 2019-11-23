@@ -9,8 +9,9 @@ import toastr from 'toastr'
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit, OnDestroy {
-
+  userId: string
   user$
+  role$
   registerForm = new FormGroup({
     username: new FormControl(''),
     password: new FormControl(''),
@@ -19,7 +20,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
   })
 
   constructor (private authService: AuthService) { }
-
   ngOnInit () {
   }
 
@@ -27,15 +27,20 @@ export class RegisterComponent implements OnInit, OnDestroy {
     if (this.user$) {
       this.user$.unsubscribe()
     }
+
+    if (this.role$) {
+      this.role$.unsubscribe()
+    }
   }
 
-  onSubmit () {
+  async onSubmit () {
     const user = this.registerForm.value
     delete user.repeatPass
-    this.user$ = this.authService.register(user).subscribe(user => {
-      this.authService.saveSession(user)
+    this.user$ = this.authService.register(user).subscribe(data => {
+      this.authService.saveSession(data)
       toastr.success('Успешна регистрация', '', { timeOut: 1000 })
-    }, err => console.log(err))
+      this.role$ = this.authService.assignRole(data['_id']).subscribe(data => console.log(data))
+    })
   }
 
 }
