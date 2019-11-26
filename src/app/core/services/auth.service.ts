@@ -27,7 +27,6 @@ export class AuthService {
   saveSession (user) {
     window.sessionStorage.setItem('token', user._kmd.authtoken)
     window.sessionStorage.setItem('username', user.username)
-    window.sessionStorage.setItem('role', user._kmd.roles[0].roleId)
   }
 
   login (user) {

@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core'
 import { AuthService } from 'src/app/core/services/auth.service'
 import { FormGroup, FormControl } from '@angular/forms'
 import toastr from 'toastr'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-register',
@@ -19,7 +20,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
     address: new FormControl('')
   })
 
-  constructor (private authService: AuthService) { }
+  constructor (private authService: AuthService, private router: Router) { }
   ngOnInit () {
   }
 
@@ -39,7 +40,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
     this.user$ = this.authService.register(user).subscribe(data => {
       this.authService.saveSession(data)
       toastr.success('Успешна регистрация', '', { timeOut: 1000 })
-      this.role$ = this.authService.assignRole(data['_id']).subscribe(data => console.log(data))
+      this.role$ = this.authService.assignRole(data['_id']).subscribe(data => { window.sessionStorage.setItem('role', data['roleId']) ; this.router.navigateByUrl('/shoes') })
     })
   }
 
