@@ -27,7 +27,7 @@ export class AuthService {
   saveSession (user) {
     window.sessionStorage.setItem('token', user._kmd.authtoken)
     window.sessionStorage.setItem('username', user.username)
-    window.sessionStorage.setItem('userId', user._id)
+    window.sessionStorage.setItem('role', user._kmd.roles[0].roleId)
   }
 
   login (user) {
@@ -59,5 +59,13 @@ export class AuthService {
 
     const url: string = `https://baas.kinvey.com/user/${this.APP_KEY}/${userId}/roles/ef0cfeda-5a9a-4a9b-ac2c-adbfd6362109`
     return this.http.put(url, {}, roleOptions)
+  }
+
+  isAuth () {
+    return window.sessionStorage.getItem('token') !== null
+  }
+
+  isAdmin () {
+    return window.sessionStorage.getItem('role') === this.ADMIN_ROLE_ID
   }
 }
