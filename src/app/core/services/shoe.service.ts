@@ -32,4 +32,15 @@ export class ShoeService {
     const url: string = `${this.URLShoe}appdata/${this.APP_KEY}/shoes`
     return this.http.post(url, shoe, httpHeaders)
   }
+
+  getAllShoes () {
+    const httpHeaders = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': 'Kinvey ' + window.sessionStorage.getItem('token')
+      })
+    }
+    const url: string = `${this.URLShoe}appdata/${this.APP_KEY}/shoes`
+    return this.http.get<Shoe[]>(url, httpHeaders)
+  }
 }
