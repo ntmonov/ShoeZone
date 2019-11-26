@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core'
 import { AuthService } from 'src/app/core/services/auth.service'
-import { FormGroup, FormControl } from '@angular/forms'
+import { FormGroup, FormControl, Validators } from '@angular/forms'
 import toastr from 'toastr'
 import { Router } from '@angular/router'
 
@@ -14,11 +14,17 @@ export class RegisterComponent implements OnInit, OnDestroy {
   user$
   role$
   registerForm = new FormGroup({
-    username: new FormControl(''),
-    password: new FormControl(''),
+    username: new FormControl('', [ Validators.required, Validators.minLength(3) ]),
+    password: new FormControl('', [ Validators.required, Validators.minLength(3) ]),
     repeatPass: new FormControl(''),
-    address: new FormControl('')
+    address: new FormControl('', [ Validators.required, Validators.minLength(10) ])
   })
+
+  get username () { return this.registerForm.get('username') }
+  get password () { return this.registerForm.get('password') }
+  get repeatPass () { return this.registerForm.get('repeatPass') }
+  get address () { return this.registerForm.get('address') }
+
 
   constructor (private authService: AuthService, private router: Router) { }
   ngOnInit () {

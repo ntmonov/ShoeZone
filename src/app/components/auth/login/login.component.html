@@ -24,7 +24,7 @@
         </div>
 </div>
     </div>
-    <button type="submit" class="btn btn-primary">Влез</button>
+    <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">Влез</button>
     <span>Нямате акаунт - <a routerLink="/register">регистрирайте се</a></span>
   </form>
 
