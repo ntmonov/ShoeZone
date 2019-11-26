@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core'
 import { Shoe } from 'src/app/core/models/shoe'
+import { AuthService } from 'src/app/core/services/auth.service'
 
 @Component({
   selector: 'app-shoe',
@@ -8,7 +9,7 @@ import { Shoe } from 'src/app/core/models/shoe'
 })
 export class ShoeComponent implements OnInit {
   @Input() shoe: Shoe
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
   }

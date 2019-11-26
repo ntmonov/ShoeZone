@@ -41,7 +41,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
       this.authService.saveSession(data)
       toastr.success('Успешна регистрация', '', { timeOut: 1000 })
       this.role$ = this.authService.assignRole(data['_id']).subscribe(data => { window.sessionStorage.setItem('role', data['roleId']) ; this.router.navigateByUrl('/shoes') })
-    })
+    }, err => toastr.error(err.error.description))
   }
 
 }

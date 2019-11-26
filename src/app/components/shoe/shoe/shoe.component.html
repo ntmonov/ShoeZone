@@ -4,6 +4,6 @@
       <h5 class="card-title">{{shoe.title}}</h5>
       <p class="card-text">{{shoe.description}}</p>
       <p class="card-text">{{shoe.price}}</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
+      <a *ngIf="authService.isAdmin()" routerLink="/shoe/{{shoe._id}}" class="btn btn-primary">Редакция</a>
     </div>
   </div>

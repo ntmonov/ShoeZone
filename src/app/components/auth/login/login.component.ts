@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       toastr.success('Успешно влизане', '', { timeOut: 1000 })
       window.sessionStorage.setItem('role', user['_kmd'].roles[0].roleId)
       this.router.navigateByUrl('/shoes')
-    }, err => console.log(err))
+    }, err => toastr.error(err.error.description))
   }
 
 }

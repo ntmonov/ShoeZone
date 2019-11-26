@@ -1,0 +1,23 @@
+<div class="container row text-center">
+    <form [formGroup]="editShoeForm" (ngSubmit)="onSubmit()" class="col-md-6 offset-md-6">
+        <h1>Редактиране на обувка</h1>
+        <div class="form-group">
+            <label for="title">Заглавие</label>
+            <input type="text" class="form-control" id="title" formControlName="title">
+          </div>
+          <div class="form-group">
+              <label for="description">Описание</label>
+              <textarea class="form-control" id="description" formControlName="description"></textarea>
+            </div>
+        <div class="form-group">
+          <label for="inputImage">Снимка</label>
+          <input type="text" class="form-control" id="inputImage" formControlName="imageUrl">
+        </div>
+
+        <div class="form-group">
+            <label for="price">Цена</label>
+            <input type="number" class="form-control" id="price" formControlName="price">
+          </div>
+        <button type="submit" class="btn btn-primary">Редактирай</button>
+      </form>
+</div>

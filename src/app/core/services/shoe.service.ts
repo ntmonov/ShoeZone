@@ -43,4 +43,26 @@ export class ShoeService {
     const url: string = `${this.URLShoe}appdata/${this.APP_KEY}/shoes`
     return this.http.get<Shoe[]>(url, httpHeaders)
   }
+
+  getShoe (id: string) {
+    const httpHeaders = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': 'Kinvey ' + window.sessionStorage.getItem('token')
+      })
+    }
+    const url: string = `${this.URLShoe}appdata/${this.APP_KEY}/shoes/${id}`
+    return this.http.get(url, httpHeaders)
+  }
+
+  updateShoe (id: string, shoe: Shoe) {
+    const httpHeaders = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': 'Kinvey ' + window.sessionStorage.getItem('token')
+      })
+    }
+    const url: string = `${this.URLShoe}appdata/${this.APP_KEY}/shoes/${id}`
+    return this.http.put(url, shoe, httpHeaders)
+  }
 }
