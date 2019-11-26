@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core'
 import { FormGroup, FormControl } from '@angular/forms'
 import { ShoeService } from 'src/app/core/services/shoe.service'
-
+import toastr from 'toastr'
+ 
 @Component({
   selector: 'app-add-shoe',
   templateUrl: './add-shoe.component.html',
@@ -25,13 +26,11 @@ export class AddShoeComponent implements OnInit {
     let formData = new FormData()
     formData.append('file', file['files'][0])
     this.shoeService.upload(formData.get('file')).subscribe(data => {
-      console.log(data)
       this.imgUrl = data['data']['link']
       const shoe = this.addShoeForm.value
       shoe.imageUrl = this.imgUrl
-      console.log(shoe)
-      this.shoeService.addShoe(shoe).subscribe(data => console.log(data), err => console.log(err))
-    }, err => console.log(err))
+      this.shoeService.addShoe(shoe).subscribe(data => toastr.success('Успешно добавена обувка'), err => toastr.error(err.error.description))
+    }, err => toastr.error('Снимката не може да се качи'))
   }
 
 }

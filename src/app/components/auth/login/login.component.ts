@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core'
 import { FormGroup, FormControl } from '@angular/forms'
-import toastr from  'toastr'
+import toastr from 'toastr'
 import { AuthService } from 'src/app/core/services/auth.service'
 
 @Component({
