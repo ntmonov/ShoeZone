@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core'
-import { FormGroup, FormControl } from '@angular/forms'
+import { FormGroup, FormControl, Validators } from '@angular/forms'
 import toastr from 'toastr'
 import { AuthService } from 'src/app/core/services/auth.service'
 import { Router } from '@angular/router'
@@ -13,11 +13,15 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   user$
   loginForm = new FormGroup({
-    username: new FormControl(''),
-    password: new FormControl('')
+    username: new FormControl('', [ Validators.required, Validators.minLength(3) ]),
+    password: new FormControl('', [ Validators.required, Validators.minLength(3) ])
   })
 
   constructor(private authService: AuthService, private router: Router) { }
+
+  get username () { return this.loginForm.get('username') }
+  get password () { return this.loginForm.get('password') }
+
 
   ngOnInit() {
   }
