@@ -1,11 +1,21 @@
-<div class="container text-center" *ngIf="shoe">
-    <div style="width: 500px;">
-        <img src="{{shoe.imageUrl}}" alt="Shoe Image" width="500px">
-        <h1>{{shoe.make}}</h1>
-        <br>
-        <h3>{{shoe.title}}</h3>
-        <br>
-        <p>{{shoe.description}}</p>
-        <p style="font-style: italic;">Цена {{shoe.price}} лв.</p>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="{{shoe.imageUrl}}" width="75%" alt="ShoeImage">
+        </div>
+        <div class="col-md-6">
+            <h1>{{shoe.make}}</h1>
+            <hr>
+            <h5>{{shoe.title}}</h5>
+            <hr>
+            <h6>Описание</h6>
+            <hr>
+            <p>{{shoe.description}}</p>
+            <hr>
+            <p>Цена: {{shoe.price}} лв.</p>
+        </div>
     </div>
+    <div class="wrapper text-center">
+    <a routerLink="/cart/{{shoe._id}}" class="btn btn-success">Добави към количката</a>
+</div>
 </div>
