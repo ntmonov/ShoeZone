@@ -1,5 +1,7 @@
 <div class="card" style="width: 18rem;">
-    <img src="{{shoe.imageUrl}}" class="card-img-top" alt="...">
+  <a routerLink="/shoe/details/{{shoe._id}}">  
+  <img src="{{shoe.imageUrl}}" class="card-img-top" alt="...">
+</a>
     <div class="card-body">
       <h3>{{shoe.make}}</h3>
       <p class="card-title">{{shoe.title}}</p>
