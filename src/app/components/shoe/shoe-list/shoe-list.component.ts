@@ -9,9 +9,9 @@ import { ShoeService } from 'src/app/core/services/shoe.service'
 })
 export class ShoeListComponent implements OnInit {
   shoes: Shoe[] = []
-  constructor(private shoeService: ShoeService) { }
+  constructor (private shoeService: ShoeService) { }
 
-  ngOnInit() {
+  ngOnInit () {
     this.shoeService.getAllShoes().subscribe(data => this.shoes = data, err => console.log(err))
   }
 

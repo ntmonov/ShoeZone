@@ -1,9 +1,10 @@
 <div class="card" style="width: 18rem;">
     <img src="{{shoe.imageUrl}}" class="card-img-top" alt="...">
     <div class="card-body">
-      <h5 class="card-title">{{shoe.title}}</h5>
-      <p class="card-text">{{shoe.description}}</p>
-      <p class="card-text">{{shoe.price}}</p>
-      <a *ngIf="authService.isAdmin()" routerLink="/shoe/{{shoe._id}}" class="btn btn-primary">Редакция</a>
+      <h3>{{shoe.make}}</h3>
+      <p class="card-title">{{shoe.title}}</p>
+      <p class="card-text">Цена {{shoe.price}}</p>
+      <a *ngIf="authService.isAdmin()" routerLink="/shoe/{{shoe._id}}" class="btn btn-warning mr-2">Редакция</a>
+      <a *ngIf="authService.isAdmin()" class="btn btn-danger" (click)="handleDelete()">Изтрий</a>
     </div>
   </div>

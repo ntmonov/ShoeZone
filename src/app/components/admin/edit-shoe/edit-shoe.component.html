@@ -2,6 +2,10 @@
     <form [formGroup]="editShoeForm" (ngSubmit)="onSubmit()" class="col-md-6 offset-md-6">
         <h1>Редактиране на обувка</h1>
         <div class="form-group">
+          <label for="make">Марка</label>
+          <input type="text" class="form-control" id="make" formControlName="make">
+        </div>
+        <div class="form-group">
             <label for="title">Заглавие</label>
             <input type="text" class="form-control" id="title" formControlName="title">
           </div>
@@ -18,6 +22,6 @@
             <label for="price">Цена</label>
             <input type="number" class="form-control" id="price" formControlName="price">
           </div>
-        <button type="submit" class="btn btn-primary">Редактирай</button>
+        <button type="submit" class="btn btn-warning">Редактирай</button>
       </form>
 </div>
