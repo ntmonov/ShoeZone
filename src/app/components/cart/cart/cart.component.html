@@ -1,3 +1,16 @@
-<div *ngFor="let p of products">
-    <p>{{p | json}}</p>
+<div class="container">
+    <div class="row" *ngFor="let prod of products">
+        <div class="col-md-6">
+            <img src="{{prod[0].imageUrl}}" width="75%" alt="imageUrl">
+        </div>
+        <div class="col-md-2">
+            Make: {{prod[0].make}}
+        </div>
+        <div class="col-md-2">
+            Title: {{prod[0].title}}
+        </div>
+        <div class="col-md-2">
+            Price: {{prod[0].price}}
+        </div>
+    </div>
 </div>
