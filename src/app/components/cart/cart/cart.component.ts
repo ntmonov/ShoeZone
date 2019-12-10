@@ -26,7 +26,6 @@ export class CartComponent implements OnInit {
     for (let id of ids) {
       const prod = await this.cartService.getProductById(id).toPromise()
       this.products.push(prod)
-      console.log(prod)
     }
   }
 }

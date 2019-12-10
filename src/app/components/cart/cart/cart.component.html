@@ -1,7 +1,7 @@
 <div class="container">
-    <div class="row" *ngFor="let prod of products">
+    <div class="row border rounded-pill border-primary" *ngFor="let prod of products">
         <div class="col-md-6">
-            <img src="{{prod[0].imageUrl}}" width="75%" alt="imageUrl">
+            <img src="{{prod[0].imageUrl}}" width="25%" alt="imageUrl">
         </div>
         <div class="col-md-2">
             Make: {{prod[0].make}}
