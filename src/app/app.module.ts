@@ -8,6 +8,7 @@ import { SharedModule } from './components/shared/shared.module'
 import { AuthModule } from './components/auth/auth.module'
 import { AdminModule } from './components/admin/admin.module'
 import { ShoeModule } from './components/shoe/shoe.module'
+import { CartModule } from './components/cart/cart.module'
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ShoeModule } from './components/shoe/shoe.module'
     SharedModule,
     AuthModule,
     AdminModule,
-    ShoeModule
+    ShoeModule,
+    CartModule
   ],
   providers: [],
   bootstrap: [AppComponent]

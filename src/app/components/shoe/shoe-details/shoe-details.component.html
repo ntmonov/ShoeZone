@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="shoe">
     <div class="row">
         <div class="col-md-6">
             <img src="{{shoe.imageUrl}}" width="75%" alt="ShoeImage">
@@ -16,6 +16,6 @@
         </div>
     </div>
     <div class="wrapper text-center">
-    <a routerLink="/cart/{{shoe._id}}" class="btn btn-success">Добави към количката</a>
-</div>
+        <button class="btn btn-primary" (click)="addToCart(shoe._id)">Добави към количката</button>
+    </div>
 </div>

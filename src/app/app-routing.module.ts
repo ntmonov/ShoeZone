@@ -7,6 +7,7 @@ import { AddShoeComponent } from './components/admin/add-shoe/add-shoe.component
 import { ShoeListComponent } from './components/shoe/shoe-list/shoe-list.component'
 import { EditShoeComponent } from './components/admin/edit-shoe/edit-shoe.component'
 import { ShoeDetailsComponent } from './components/shoe/shoe-details/shoe-details.component'
+import { CartComponent } from './components/cart/cart/cart.component'
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', component: HomePageComponent },
@@ -15,7 +16,8 @@ const routes: Routes = [
   { path: 'addShoe', component: AddShoeComponent },
   { path: 'shoes', component: ShoeListComponent },
   { path: 'shoe/:id', component: EditShoeComponent },
-  { path: 'shoe/details/:id', component: ShoeDetailsComponent }
+  { path: 'shoe/details/:id', component: ShoeDetailsComponent },
+  { path: 'cart/:userId', component: CartComponent }
 ]
 
 @NgModule({
