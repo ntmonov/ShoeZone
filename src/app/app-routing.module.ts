@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: 'shoes', component: ShoeListComponent },
   { path: 'shoe/:id', component: EditShoeComponent },
   { path: 'shoe/details/:id', component: ShoeDetailsComponent },
-  { path: 'cart/:userId', component: CartComponent }
+  { path: 'cart', component: CartComponent }
 ]
 
 @NgModule({

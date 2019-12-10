@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CartService } from 'src/app/core/services/cart.service';
 
 @Component({
   selector: 'app-cart',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CartComponent implements OnInit {
 
-  constructor() { }
+  products: Object
+  cart$
+
+  constructor(private cartService: CartService) { }
 
   ngOnInit() {
+    this.cart$ = this.cartService.getCartProducts().subscribe(data => this.products = data, err => console.log(err))
   }
 
 }

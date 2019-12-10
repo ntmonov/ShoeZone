@@ -17,6 +17,9 @@
       <li class="nav-item" *ngIf="authService.isAdmin()">
         <a class="nav-link" routerLink="/addShoe">Добави обувка</a>
       </li>
+      <li class="nav-item" *ngIf="authService.isAuth()">
+        <a class="nav-link" routerLink="/cart">Количка</a>
+      </li>
     </ul>
     <div *ngIf="authService.isLoggedIn()">
       <span class="mr-3">Добре дошли {{username}}</span>

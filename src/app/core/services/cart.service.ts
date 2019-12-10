@@ -24,4 +24,15 @@ export class CartService {
     }
     return this.http.post(`${this.URL}appdata/${this.APP_KEY}/cart`, body, httpHeaders)
   }
+
+  getCartProducts () {
+    const httpHeaders = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': 'Kinvey ' + window.sessionStorage.getItem('token')
+      })
+    }
+    const userId = window.sessionStorage.getItem('id')
+    return this.http.get(`${this.URL}appdata/${this.APP_KEY}/cart?query={"userId":"${userId}"}&fields=productId`, httpHeaders)
+  }
 }
