@@ -47,4 +47,15 @@ export class CartService {
     }
     return this.http.get<Shoe>(`${this.URL}appdata/${this.APP_KEY}/shoes?query={"_id":"${shoeId}"}`, httpHeaders)
   }
+
+  getProductsCount () {
+    const httpHeaders = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': 'Kinvey ' + window.sessionStorage.getItem('token')
+      })
+    }
+    const userId = window.sessionStorage.getItem('id')
+    return this.http.get<number>(`${this.URL}appdata/${this.APP_KEY}/cart?query={"userId":"${userId}"}_count`, httpHeaders)
+  }
 }

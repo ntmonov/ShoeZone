@@ -11,6 +11,10 @@ export class ShoeService {
 
   constructor (private http: HttpClient) { }
 
+  getUser () {
+    return window.sessionStorage.getItem('username')
+  }
+
   addShoe (shoe: Shoe) {
     const httpHeaders = {
       headers: new HttpHeaders({

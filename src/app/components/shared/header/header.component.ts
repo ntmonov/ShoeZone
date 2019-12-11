@@ -1,6 +1,7 @@
-import { Component, OnInit, OnDestroy } from '@angular/core'
+import { Component, OnInit, OnDestroy, Input } from '@angular/core'
 import toastr from 'toastr'
 import { AuthService } from 'src/app/core/services/auth.service'
+import { CartService } from 'src/app/core/services/cart.service'
 
 @Component({
   selector: 'app-header',
@@ -8,19 +9,16 @@ import { AuthService } from 'src/app/core/services/auth.service'
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  username: string
   user$
-  constructor(private authService: AuthService) { }
+  @Input() username: string
+  
+  constructor(private authService: AuthService, private cartService: CartService) { }
 
-  ngOnInit() {
+  ngOnInit () {
   }
 
   ngOnDestroy(): void {
     this.user$.unsubscribe()
-  }
-
-  ngDoCheck () {
-    this.username = window.sessionStorage.getItem('username')
   }
 
   logout () {
@@ -29,5 +27,4 @@ export class HeaderComponent implements OnInit, OnDestroy {
       toastr.success('Успешно излизане', '', { timeOut: 1000 })
     }, err => console.log(err))
   }
-
 }

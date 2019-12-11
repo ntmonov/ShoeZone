@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core'
+import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core'
 import { FormGroup, FormControl, Validators } from '@angular/forms'
 import toastr from 'toastr'
 import { AuthService } from 'src/app/core/services/auth.service'
@@ -12,6 +12,8 @@ import { Router } from '@angular/router'
 export class LoginComponent implements OnInit, OnDestroy {
 
   user$
+  @Output() getUsername = new EventEmitter()
+
   loginForm = new FormGroup({
     username: new FormControl('', [ Validators.required, Validators.minLength(3) ]),
     password: new FormControl('', [ Validators.required, Validators.minLength(3) ])
@@ -22,6 +24,9 @@ export class LoginComponent implements OnInit, OnDestroy {
   get username () { return this.loginForm.get('username') }
   get password () { return this.loginForm.get('password') }
 
+  getUser () {
+    this.getUsername.emit()
+  }
 
   ngOnInit() {
   }
@@ -39,6 +44,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       toastr.success('Успешно влизане', '', { timeOut: 1000 })
       window.sessionStorage.setItem('role', user['_kmd'].roles[0].roleId)
       this.router.navigateByUrl('/shoes')
+      this.getUser()
     }, err => toastr.error(err.error.description))
   }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core'
+import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core'
 import { Shoe } from 'src/app/core/models/shoe'
 import { ActivatedRoute } from '@angular/router'
 import { ShoeService } from 'src/app/core/services/shoe.service'
@@ -36,7 +36,8 @@ export class ShoeDetailsComponent implements OnInit, OnDestroy {
   }
 
   addToCart (shoeId) {
-    this.cart$ = this.cartService.addToCart(shoeId).subscribe(data => toastr.success('Shoe added to cart'), err => toastr.error(err))
+    this.cart$ = this.cartService.addToCart(shoeId).subscribe(data => {
+      toastr.success('Shoe added to cart')
+    }, err => toastr.error(err))
   }
-
 }
