@@ -1,12 +1,12 @@
 <div class="card" style="width: 18rem;">
-  <a routerLink="/shoe/details/{{shoe._id}}">  
+  <a routerLink="/shoes/details/{{shoe._id}}">  
   <img src="{{shoe.imageUrl}}" class="card-img-top" alt="...">
 </a>
     <div class="card-body">
       <h3>{{shoe.make}}</h3>
       <p class="card-title">{{shoe.title}}</p>
       <p class="card-text">Цена {{shoe.price}}</p>
-      <a *ngIf="authService.isAdmin()" routerLink="/shoe/{{shoe._id}}" class="btn btn-warning mr-2">Редакция</a>
+      <a *ngIf="authService.isAdmin()" routerLink="/shoes/{{shoe._id}}" class="btn btn-warning mr-2">Редакция</a>
       <a *ngIf="authService.isAdmin()" class="btn btn-danger" (click)="handleDelete()">Изтрий</a>
     </div>
   </div>

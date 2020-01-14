@@ -20,7 +20,7 @@ export class ShoeComponent implements OnInit {
   handleDelete () {
     this.shoeService.deletetShoe(this.shoe['_id']).subscribe(data => {
       toastr.success('Обувката е изтрита')
-      this.router.navigateByUrl('/shoes')
+      location.reload()
     }, () => toastr.error('Грешка приизтриването'))
   }
 

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { AddShoeComponent } from './add-shoe/add-shoe.component'
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms'
 import { EditShoeComponent } from './edit-shoe/edit-shoe.component'
 
 @NgModule({
@@ -11,7 +11,8 @@ import { EditShoeComponent } from './edit-shoe/edit-shoe.component'
     ReactiveFormsModule
   ],
   exports: [
-    AddShoeComponent
+    AddShoeComponent,
+    EditShoeComponent
   ]
 })
 export class AdminModule { }
