@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   @Input() username: string
   @Input() cartCount: number
   
-  constructor(private authService: AuthService, private cartService: CartService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit () {
   }

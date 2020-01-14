@@ -10,7 +10,6 @@ import { Router } from '@angular/router'
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit, OnDestroy {
-  @Output() getUserData = new EventEmitter()
 
   userId: string
   user$
@@ -42,9 +41,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
     }
   }
 
-  getUser () {
-    this.getUserData.emit()
-  }
 
   async onSubmit () {
     const user = this.registerForm.value

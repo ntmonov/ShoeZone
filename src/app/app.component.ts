@@ -19,8 +19,16 @@ export class AppComponent implements OnDestroy {
 
   constructor (private cartService: CartService) {}
 
-  getUser () {
-    this.username = window.sessionStorage.getItem('username')
-    this.cart$ = this.cartService.getProductsCount().subscribe(data => this.cartCount = data['count'])
+  getUserInfo () {
+    const userId = window.sessionStorage.getItem('id')
+    if (!userId) {
+      return
+    }
+    this.cartService.getProductsCount().subscribe(data => {
+      this.cartCount = data['count']
+      this.username = window.sessionStorage.getItem('username')
+    }, err => {
+      console.log(err)
+    })
   }
 }

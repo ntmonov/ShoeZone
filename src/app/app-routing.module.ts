@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'addShoe', component: AddShoeComponent },
-  { path: 'shoes', loadChildren: () => import('./components/shoe/shoe.module').then(m => m.ShoeModule) },
+  { path: 'shoes', loadChildren: () => import('./components/shoe/shoe.module').then(mod => mod.ShoeModule) },
   { path: 'cart', component: CartComponent }
 ]
 
