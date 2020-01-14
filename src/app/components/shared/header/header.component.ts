@@ -12,6 +12,7 @@ import { Router } from '@angular/router'
 export class HeaderComponent implements OnInit, OnDestroy {
   user$
   @Input() username: string
+  @Input() cartCount: number
   
   constructor(private authService: AuthService, private cartService: CartService, private router: Router) { }
 

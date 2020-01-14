@@ -56,6 +56,6 @@ export class CartService {
       })
     }
     const userId = window.sessionStorage.getItem('id')
-    return this.http.get<number>(`${this.URL}appdata/${this.APP_KEY}/cart?query={"userId":"${userId}"}_count`, httpHeaders)
+    return this.http.get<number>(`${this.URL}appdata/${this.APP_KEY}/cart/_count?query={"userId":"${userId}"}`, httpHeaders)
   }
 }

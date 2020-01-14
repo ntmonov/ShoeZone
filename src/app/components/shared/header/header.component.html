@@ -23,7 +23,7 @@
     </ul>
     <div *ngIf="authService.isLoggedIn()">
       <span class="mr-3">Добре дошли {{username}}</span>
-      <span class="mr-3">Продукти в количката</span>
+      <span class="mr-3">{{cartCount}} Продукти в количката</span>
       <button (click)="logout()">Logout</button>
     </div>
   </div>

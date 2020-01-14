@@ -11,6 +11,7 @@ import toastr from 'toastr'
   styleUrls: ['./shoe-details.component.css']
 })
 export class ShoeDetailsComponent implements OnInit, OnDestroy {
+  @Output() getUserData = new EventEmitter()
   shoe: Shoe
   id: string
   route$
@@ -38,6 +39,7 @@ export class ShoeDetailsComponent implements OnInit, OnDestroy {
   addToCart (shoeId) {
     this.cart$ = this.cartService.addToCart(shoeId).subscribe(data => {
       toastr.success('Shoe added to cart')
+      this.getUserData.emit()
     }, err => toastr.error(err))
   }
 }

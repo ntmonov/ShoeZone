@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core'
+import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core'
 import { AuthService } from 'src/app/core/services/auth.service'
 import { FormGroup, FormControl, Validators } from '@angular/forms'
 import toastr from 'toastr'
@@ -10,6 +10,8 @@ import { Router } from '@angular/router'
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit, OnDestroy {
+  @Output() getUserData = new EventEmitter()
+
   userId: string
   user$
   role$
@@ -38,6 +40,10 @@ export class RegisterComponent implements OnInit, OnDestroy {
     if (this.role$) {
       this.role$.unsubscribe()
     }
+  }
+
+  getUser () {
+    this.getUserData.emit()
   }
 
   async onSubmit () {

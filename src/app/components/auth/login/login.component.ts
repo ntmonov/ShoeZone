@@ -12,7 +12,7 @@ import { Router } from '@angular/router'
 export class LoginComponent implements OnInit, OnDestroy {
 
   user$
-  @Output() getUsername = new EventEmitter()
+  @Output() getUserData = new EventEmitter()
 
   loginForm = new FormGroup({
     username: new FormControl('', [ Validators.required, Validators.minLength(3) ]),
@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   get password () { return this.loginForm.get('password') }
 
   getUser () {
-    this.getUsername.emit()
+    this.getUserData.emit()
   }
 
   ngOnInit() {
