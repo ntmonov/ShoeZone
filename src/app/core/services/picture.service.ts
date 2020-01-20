@@ -25,11 +25,10 @@ export class PictureService {
     fd.append('image', image)
     const httpHeadersForUpload = {
       headers: new HttpHeaders({
-        'Content-Type': image.type.toString(),
         'Content-Length': image.size.toString()
       })
     }
-    await this.http.put(upLoadUrl, fd.get('image'), httpHeadersForUpload)
+    await this.http.put(upLoadUrl, fd.get('image'), httpHeadersForUpload).toPromise()
     return imageId
   }
 }

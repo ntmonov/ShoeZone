@@ -26,8 +26,16 @@ export class AddShoeComponent implements OnDestroy {
   }
 
   async onSubmit () {
-    let image = document.getElementById('inputImage').files[0]
+    let imageField = document.getElementById('inputImage')
+    let image = imageField.files[0]
     const imageId = await this.pictureService.uploadImage(image)
-    console.log(imageId)
+    let shoe = this.addShoeForm.value
+    shoe['imageId'] = imageId
+    this.shoe$ = this.shoeService.addShoe(shoe).subscribe(() => {
+      toastr.success('Обувката е добавена')
+      this.addShoeForm.reset()
+      imageField.value = ''
+
+    }, () => toastr.error('Грешка'))
   }
 }
