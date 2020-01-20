@@ -40,4 +40,13 @@ export class PictureService {
     }
     return this.http.get(`${this.URL}blob/${this.APP_KEY}/${pictureId}`, httpHeaders)
   }
+
+  deletePicture (pictureId: string) {
+    const httpHeaders = {
+      headers: new HttpHeaders({
+        'Authorization': 'Kinvey ' + window.sessionStorage.getItem('token')
+      })
+    }
+    return this.http.delete(`${this.URL}blob/${this.APP_KEY}/${pictureId}`, httpHeaders)
+  }
 }

@@ -26,7 +26,7 @@ export class AddShoeComponent implements OnDestroy {
   }
 
   async onSubmit () {
-    let imageField = document.getElementById('inputImage')
+    let imageField = document.getElementById('inputImage') as HTMLInputElement
     let image = imageField.files[0]
     const imageId = await this.pictureService.uploadImage(image)
     let shoe = this.addShoeForm.value

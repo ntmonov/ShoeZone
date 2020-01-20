@@ -23,6 +23,9 @@ export class ShoeComponent implements OnInit {
   }
 
   handleDelete () {
+    this.pictureService.deletePicture(this.shoe.imageId).subscribe(data => {
+      console.log('Pic deleted')
+    })
     this.shoeService.deletetShoe(this.shoe['_id']).subscribe(data => {
       toastr.success('Обувката е изтрита')
       location.reload()
