@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router'
 import { ShoeService } from 'src/app/core/services/shoe.service'
 import { CartService } from 'src/app/core/services/cart.service'
 import toastr from 'toastr'
+import { PictureService } from 'src/app/core/services/picture.service'
 
 @Component({
   selector: 'app-shoe-details',
@@ -13,10 +14,12 @@ import toastr from 'toastr'
 export class ShoeDetailsComponent implements OnInit, OnDestroy {
   shoe: Shoe
   id: string
+  imageUrl: string
+  image$
   route$
   shoe$
   cart$
-  constructor (private route: ActivatedRoute, private shoeService: ShoeService, private cartService: CartService) { }
+  constructor (private route: ActivatedRoute, private shoeService: ShoeService, private cartService: CartService, private pictureService: PictureService) { }
 
   ngOnDestroy () {
     if (this.route$) {
@@ -32,7 +35,10 @@ export class ShoeDetailsComponent implements OnInit, OnDestroy {
 
   ngOnInit () {
     this.route$ = this.route.params.subscribe(params => this.id = params.id, err => console.log(err))
-    this.shoe$ = this.shoeService.getShoe(this.id).subscribe(data => this.shoe = data, err => console.log(err))
+    this.shoe$ = this.shoeService.getShoe(this.id).subscribe(data => {
+      this.shoe = data
+      this.pictureService.getPictureById(this.shoe.imageId).subscribe(data => this.imageUrl = data['_downloadURL'])
+    }, err => console.log(err))
   }
 
   addToCart (shoeId) {
