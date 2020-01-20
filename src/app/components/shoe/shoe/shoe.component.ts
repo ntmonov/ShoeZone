@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/core/services/auth.service'
 import { ShoeService } from 'src/app/core/services/shoe.service'
 import { Router } from '@angular/router'
 import toastr from 'toastr'
+import { PictureService } from 'src/app/core/services/picture.service'
 
 @Component({
   selector: 'app-shoe',
@@ -12,9 +13,13 @@ import toastr from 'toastr'
 })
 export class ShoeComponent implements OnInit {
   @Input() shoe: Shoe
-  constructor(private authService: AuthService, private shoeService: ShoeService, private router: Router) { }
+  imageUrl: string
+  constructor(private authService: AuthService, private shoeService: ShoeService, private router: Router, private pictureService: PictureService) { }
 
   ngOnInit() {
+    this.pictureService.getPictureById(this.shoe.imageId).subscribe(data => {
+      this.imageUrl = data['_downloadURL']
+    })
   }
 
   handleDelete () {

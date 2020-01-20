@@ -31,4 +31,13 @@ export class PictureService {
     await this.http.put(upLoadUrl, fd.get('image'), httpHeadersForUpload).toPromise()
     return imageId
   }
+
+  getPictureById (pictureId: string) {
+    const httpHeaders = {
+      headers: new HttpHeaders({
+        'Authorization': 'Kinvey ' + window.sessionStorage.getItem('token')
+      })
+    }
+    return this.http.get(`${this.URL}blob/${this.APP_KEY}/${pictureId}`, httpHeaders)
+  }
 }
