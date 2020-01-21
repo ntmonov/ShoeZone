@@ -24,7 +24,9 @@ export class CartComponent implements OnInit {
         ids.push(cartItem['productId'])
       }
       for (let id of ids) {
-        this.cartService.getProductById(id).subscribe(data => this.products.push(data))
+        this.cartService.getProductById(id).subscribe(data => {
+          this.products.push(data)
+        })
       }
     })
   //   this.productIds = await this.cartService.getCartProducts().toPromise()
