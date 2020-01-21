@@ -8,7 +8,7 @@ import { Shoe } from 'src/app/core/models/shoe';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
-
+  cart
   productIds: string[]
   products: Shoe[] = []
   cartIds$

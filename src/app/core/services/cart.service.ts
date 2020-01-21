@@ -58,4 +58,28 @@ export class CartService {
     const userId = window.sessionStorage.getItem('id')
     return this.http.get<number>(`${this.URL}appdata/${this.APP_KEY}/cart/_count?query={"userId":"${userId}"}`, httpHeaders)
   }
+
+  async removeFromCart (productId: string) {
+    const httpHeaders = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': 'Kinvey ' + window.sessionStorage.getItem('token')
+      })
+    }
+    const data = await this.getCartIdByProductId(productId)
+    const id = data[0]['_id']
+    console.log(id)
+    await this.http.delete(`${this.URL}appdata/${this.APP_KEY}/cart/${id}`, httpHeaders).toPromise()
+  }
+
+  async getCartIdByProductId (productId: string) {
+    const httpHeaders = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': 'Kinvey ' + window.sessionStorage.getItem('token')
+      })
+    }
+    const data = await this.http.get(`${this.URL}appdata/${this.APP_KEY}/cart?query={"productId":"${productId}"}&limit=1`, httpHeaders).toPromise()
+    return data
+  }
 }
