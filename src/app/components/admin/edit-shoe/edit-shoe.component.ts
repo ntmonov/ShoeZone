@@ -19,7 +19,8 @@ export class EditShoeComponent implements OnInit, OnDestroy {
     make: new FormControl(''),
     title: new FormControl(''),
     description: new FormControl(''),
-    price: new FormControl(0)
+    price: new FormControl(0),
+    imageId: new FormControl()
   })
   constructor (private route: ActivatedRoute, private shoeService: ShoeService, private router: Router, private pictureService: PictureService) { }
 
@@ -43,7 +44,8 @@ export class EditShoeComponent implements OnInit, OnDestroy {
         make: data['make'],
         title: data['title'],
         description: data['description'],
-        price: data['price']
+        price: data['price'],
+        imageId: data['imageId']
       })
     }, () => toastr.error('Грешка при зареждането'))
   }
@@ -52,7 +54,8 @@ export class EditShoeComponent implements OnInit, OnDestroy {
     let shoe = this.editShoeForm.value
     let imageField = document.getElementById('inputImage') as HTMLInputElement
     let image = imageField.files[0]
-    if (image) {
+    console.log(image)
+    if (image !== undefined) {
       const imgId = await this.pictureService.uploadImage(image)
       shoe['imageId'] = imgId
     }
