@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router'
 import { FormGroup, FormControl } from '@angular/forms'
 import { ShoeService } from 'src/app/core/services/shoe.service'
 import toastr from 'toastr'
+import { PictureService } from 'src/app/core/services/picture.service'
 
 @Component({
   selector: 'app-edit-shoe',
@@ -13,14 +14,14 @@ export class EditShoeComponent implements OnInit, OnDestroy {
   getShoe$
   shoe$
   id: string
+  imageUrl: string
   editShoeForm = new FormGroup({
     make: new FormControl(''),
     title: new FormControl(''),
     description: new FormControl(''),
-    price: new FormControl(0),
-    imageUrl: new FormControl('')
+    price: new FormControl(0)
   })
-  constructor (private route: ActivatedRoute, private shoeService: ShoeService, private router: Router) { }
+  constructor (private route: ActivatedRoute, private shoeService: ShoeService, private router: Router, private pictureService: PictureService) { }
 
   ngOnDestroy (): void {
     if (this.shoe$) {
@@ -36,18 +37,25 @@ export class EditShoeComponent implements OnInit, OnDestroy {
       this.id = params.id
     }, err => console.log(err))
     this.getShoe$ = this.shoeService.getShoe(this.id).subscribe(data => {
+      this.pictureService.getPictureById(data['imageId']).subscribe(imgInfo => this.imageUrl = imgInfo['_downloadURL']
+      )
       this.editShoeForm.setValue({
         make: data['make'],
         title: data['title'],
         description: data['description'],
-        price: data['price'],
-        imageUrl: data['imageUrl']
+        price: data['price']
       })
     }, () => toastr.error('Грешка при зареждането'))
   }
 
-  onSubmit () {
-    const shoe = this.editShoeForm.value
+  async onSubmit () {
+    let shoe = this.editShoeForm.value
+    let imageField = document.getElementById('inputImage') as HTMLInputElement
+    let image = imageField.files[0]
+    if (image) {
+      const imgId = await this.pictureService.uploadImage(image)
+      shoe['imageId'] = imgId
+    }
     this.shoe$ = this.shoeService.updateShoe(this.id, shoe).subscribe(() => {
       toastr.success('Успешна редакция', '', { timeOut: 1000 })
       this.router.navigateByUrl('/shoes')

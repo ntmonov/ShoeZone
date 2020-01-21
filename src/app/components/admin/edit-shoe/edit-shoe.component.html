@@ -15,13 +15,14 @@
             </div>
         <div class="form-group">
           <label for="inputImage">Снимка</label>
-          <input type="text" class="form-control" id="inputImage" formControlName="imageUrl">
+          <input type="file" class="form-control" id="inputImage" />
+          <img src="{{imageUrl}}" alt="shoe">
         </div>
 
         <div class="form-group">
             <label for="price">Цена</label>
             <input type="number" class="form-control" id="price" formControlName="price">
           </div>
-        <button type="submit" class="btn btn-warning">Редактирай</button>
+        <button type="submit" class="btn btn-warning mb-5">Редактирай</button>
       </form>
 </div>
